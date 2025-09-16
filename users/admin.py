@@ -13,4 +13,3 @@ class UserAdmin(admin.ModelAdmin):
         if obj.password:
             obj.password = make_password(obj.password)
         super().save_model(request, obj, form, change)
-

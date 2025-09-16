@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название товара")
     model = models.CharField(max_length=255, verbose_name="Модель")
@@ -23,10 +24,10 @@ class Supplier(models.Model):
     house_number = models.CharField(max_length=10, verbose_name="Номер дома")
 
     # Поле определяет родителя, задаёт связь по одному родителю
-    parent_supplier = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='children')
+    parent_supplier = models.ForeignKey("self", null=True, blank=True, on_delete=models.SET_NULL, related_name="children")
 
     # Связь продуктов с поставщиками
-    products = models.ManyToManyField(Product, through='ProductSupplierRelation')
+    products = models.ManyToManyField(Product, through="ProductSupplierRelation")
 
     # Задолженность перед родительским объектом
     debt_to_parent = models.DecimalField(max_digits=10, decimal_places=2, default=0)
